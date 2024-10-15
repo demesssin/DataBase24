@@ -13,6 +13,9 @@ VALUES ('Chicago', 3),
        ('Los Angeles', 2),
        ('San Francisco', 8);
 
+drop table warehouse;
+drop table Boxes;
+
 CREATE TABLE Boxes(
     code character(4),
     contents character varying(255),
@@ -44,6 +47,11 @@ SELECT warehouse, count(*) as boxcount
 FROM Boxes
 GROUP BY warehouse;
 
+SELECT contents, avg(Boxes.value)
+FROM Boxes
+GROUP BY contents;
+
+
 SELECT warehouse, count(*) as boxcount2
 FROM boxes
 GROUP BY warehouse
@@ -64,17 +72,18 @@ LIMIT 1 OFFSET 2;
 
 UPDATE Boxes
 SET value = value * 0.85
-WHERE code = (
+WHERE code IN (
     SELECT code
     FROM Boxes
     ORDER BY value DESC
-    LIMIT 1 OFFSET 2
+    LIMIT 2 OFFSET 2
     );
 
 select * from boxes;
 
 DELETE FROM Boxes
-WHERE value < 150;
+WHERE value < 150
+returning *;
 
 DELETE FROM Boxes
 WHERE Warehouse IN (
