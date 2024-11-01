@@ -85,3 +85,41 @@ from customers
 where cust_name IS NOT NULL;
 
 select max(customers.grade) from customers;
+
+select customers.cust_name from customers
+where customer_id IN (
+    select orders.customer_id
+    from orders
+    where purch_amt > 500
+    );
+
+SELECT salesman.name
+from salesman
+where city = 'Paris';
+
+select orders.customer_id, count(*) as total_orders
+from orders
+group by customer_id;
+
+select * from customers
+where customer_id IN (
+    SELECT customer_id
+    from customers
+    where grade > 200
+    );
+
+select salesman.name from salesman
+where salesman_id in (
+    select orders.ord_date
+    from orders
+    where orders.ord_date >= '2012-09-01' and orders.ord_date <= '2012-09-30'
+
+
+    )
+
+select * from orders;
+
+
+select ( select name from salesman where orders.salesman_id = salesman.salesman_id ), sum(purch_amt) from orders
+where orders.ord_date >= '2012-09-01' and orders.ord_date <= '2012-09-30'
+group by salesman_id;
