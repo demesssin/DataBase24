@@ -1,6 +1,5 @@
 create database lecture_8;
 
-
 CREATE TABLE users
 (
     id          serial PRIMARY KEY,
