@@ -175,6 +175,8 @@ select * from employees where name = 'Ulysses' and surname = 'Henderson';
 
 create index emp_name_surname on employees(name, surname);
 
+drop index emp_name_surname;
+
 drop table employees;
 
 explain analyze
