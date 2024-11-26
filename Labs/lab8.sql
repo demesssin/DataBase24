@@ -55,8 +55,12 @@ VALUES
 (70005, 2400.6, '2012-07-27', 3007, 5001),
 (70008, 5760.0, '2012-09-10', 3002, 5001);
 
-CREATE ROLE junior_dev LOGIN;
+CREATE ROLE junior_dev;
 drop role junior_dev;
+
+create user nur with password 'demesinov';
+
+select * from orders;
 
 select rolname from pg_roles;
 select * from pg_roles;

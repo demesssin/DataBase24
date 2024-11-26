@@ -107,8 +107,7 @@ DECLARE
     rental_duration INTEGER;
 BEGIN
     -- get the rate based on film_id
-    SELECT INTO rental_duration SUM(EXTRACT(DAY FROM return_date -
-                                                     rental_date))
+    SELECT INTO rental_duration SUM(EXTRACT(DAY FROM return_date - rental_date))
     FROM rental
     WHERE customer_id = p_customer_id;
     RETURN rental_duration;
@@ -173,14 +172,22 @@ select get_film('A%a');
 
 DO
 $$
-    <<outer_block>>
+    <<outer_block>> -- действие во внешнем блоке
+                    -- Это основной блок, содержащий весь код программы или функции.
+                    --Переменные, объявленные в нем,
+                    --имеют глобальную область видимости внутри данного блока
+                    -- и всех вложенных блоков (если не "затенены").
         DECLARE
         counter integer = 0;
         cnt     integer = 10;
     BEGIN
         counter = counter + 1;
-        raise notice 'The value of counter is %', counter;
-        <<inner_block>>
+        raise notice 'The value of counter is %', counter; --  Выводит сообщение в консоль
+        
+        <<inner_block>> -- Это вложенный блок внутри внешнего, служащий для более локализованной обработки данных.
+            -- В нем можно:
+            -- Объявлять свои переменные, которые не влияют на переменные внешнего блока.
+            -- Выполнять операции, которые зависят только от этого уровня логики, не изменяя общие данные.
             declare
             counter integer = 5;
         begin
