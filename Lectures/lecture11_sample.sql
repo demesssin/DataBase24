@@ -67,18 +67,11 @@ where actor_id = 150;
 commit;
 
 
-
-
-
-
-
 begin transaction isolation level read uncommitted;
 select * from actor where actor_id=180;
 select * from actor where actor_id=180;
 select * from actor where first_name='asd';
 commit;
-
-
 
 
 
@@ -89,9 +82,7 @@ select * from actor where actor_id=135;
 commit;
 
 
-
 select * from actor where actor_id=135;
-
 
 
 begin;

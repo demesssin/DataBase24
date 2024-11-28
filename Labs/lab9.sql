@@ -152,3 +152,16 @@ $$ LANGUAGE plpgsql;
 
 SELECT complex_calculation(5, 'example');
 
+create or replace function varchar_length(stroka varchar)
+returns varchar as $$
+    declare
+    str_result integer;
+    begin
+        str_result := length(stroka);
+        return str_result;
+    end;
+    $$ language plpgsql;
+
+drop function varchar_length(stroka varchar);
+
+select varchar_length('Nurkhat');
