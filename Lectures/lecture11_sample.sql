@@ -2,8 +2,6 @@ insert into;
 
 update;
 
-
-
 begin;
 --statements
 rollback;
